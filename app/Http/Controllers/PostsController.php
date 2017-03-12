@@ -66,15 +66,8 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::findOrFail($id)->delete();
-        if ($post) {
-            return redirect('/posts')->with('success', 'Post was deleted');
-        }
-
-        return [
-            'message' => 'error'
-        ];
-
+        Post::findOrFail($id)->delete();
+        return redirect('/posts')->with('success', 'Post was deleted');
     }
 
 }
