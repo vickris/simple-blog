@@ -36,7 +36,7 @@ class PostsController extends Controller
             'description'  => 'required|max:255'
         ]);
 
-        $post = Post::create([
+        Post::create([
             'title'     => $request->input('title'),
             'description' => $request->input('description'),
             'user_id'   => Auth::user()->id,
@@ -45,28 +45,26 @@ class PostsController extends Controller
         return redirect('/posts')->with('status', 'post was created successfully');
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
         return view('posts.edit', compact('post'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $this->validate($request, [
             'title'       => 'required|max:255',
             'description' => 'required|max:255',
         ]);
 
-        $post = Post::findOrFail($id);
         $post->update($request->all());
         return back()->with('success', 'Post info updated successfully.');
     }
 
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        Post::findOrFail($id)->delete();
+        $post->delete();
         return redirect('/posts')->with('success', 'Post was deleted');
     }
 
