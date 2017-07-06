@@ -7,3 +7,4 @@
     php artisan migrate
     php artisan db:seed
     ```
+5. Generate an encryption key for the app: `php artisan key:generate`.
