@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ViewPostsTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
     /** @test */
     public function users_can_see_all_posts()
     {
